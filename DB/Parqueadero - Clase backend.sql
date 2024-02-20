@@ -61,16 +61,16 @@ CREATE TABLE "factura" (
 
 ALTER TABLE "usuarioRol" ADD FOREIGN KEY ("idRol") REFERENCES "rol" ("id");
 
-ALTER TABLE "usuario" ADD FOREIGN KEY ("id") REFERENCES "usuarioRol" ("id");
+ALTER TABLE "usuarioRol" ADD FOREIGN KEY ("idUsuario") REFERENCES "usuario" ("id");
 
-ALTER TABLE "tiquete" ADD FOREIGN KEY ("id") REFERENCES "vehiculo" ("id");
+ALTER TABLE "tiquete" ADD FOREIGN KEY ("idVehiculo") REFERENCES "vehiculo" ("id");
 
 ALTER TABLE "reserva" ADD FOREIGN KEY ("idVehiculo") REFERENCES "vehiculo" ("id");
 
 ALTER TABLE "reserva" ADD FOREIGN KEY ("idParqueadero") REFERENCES "parqueadero" ("id");
 
-ALTER TABLE "vehiculo" ADD FOREIGN KEY ("id") REFERENCES "parqueadero" ("idVehiculo");
+ALTER TABLE "parqueadero" ADD FOREIGN KEY ("idVehiculo") REFERENCES "vehiculo" ("id");
 
 ALTER TABLE "vehiculo" ADD FOREIGN KEY ("idUsuario") REFERENCES "usuario" ("id");
 
-ALTER TABLE "tipoVehiculo" ADD FOREIGN KEY ("id") REFERENCES "vehiculo" ("idTipoVehiculo");
+ALTER TABLE "vehiculo" ADD FOREIGN KEY ("idTipoVehiculo") REFERENCES "tipoVehiculo" ("id");
