@@ -32,4 +32,8 @@ public class Tiquete {
 
     @Column
     private Double valor;
+
+    @ManyToOne
+    @JoinColumn(name = "idVehiculo", referencedColumnName = "id", nullable = false)
+    private Vehiculo vehiculo;
 }
