@@ -24,4 +24,8 @@ public class Parqueadero {
 
     @Column(nullable = false)
     private Boolean disponibilidad;
+
+    @OneToOne
+    @JoinColumn(name = "idVehiculo", referencedColumnName = "id", nullable = false)
+    private Vehiculo vehiculo;
 }

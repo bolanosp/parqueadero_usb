@@ -22,7 +22,11 @@ public class Vehiculo {
     @Column(nullable = false)
     private String placa;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "idTipoVehiculo", referencedColumnName = "id", nullable = false)
     private TipoVehiculo tipoVehiculo;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", referencedColumnName = "id", nullable = false)
+    private Usuario usuario;
 }
