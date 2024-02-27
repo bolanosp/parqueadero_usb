@@ -11,4 +11,8 @@ public class TipoVehiculoMapper {
         tipoVehiculo.setTarifa(tipoVehiculoDTO.getTarifa());
         return null;
     }
+
+    public static TipoVehiculoDTO domainToDto(TipoVehiculo tipoVehiculo){
+        return null;
+    }
 }

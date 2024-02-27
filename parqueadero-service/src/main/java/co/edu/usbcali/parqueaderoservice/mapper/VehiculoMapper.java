@@ -12,4 +12,8 @@ public class VehiculoMapper {
         vehiculo.setUsuario(vehiculoDTO.getUsuario());
         return null;
     }
+
+    public  static  VehiculoDTO domainToDto(Vehiculo vehiculo){
+        return null;
+    }
 }

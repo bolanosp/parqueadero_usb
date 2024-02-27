@@ -12,4 +12,8 @@ public class FacturaMapper {
         return null;
     }
 
+    public static FacturaDTO domainToDto(Factura factura){
+        return null;
+    }
+
 }

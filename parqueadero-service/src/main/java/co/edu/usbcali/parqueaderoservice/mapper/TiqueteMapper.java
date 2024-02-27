@@ -14,4 +14,8 @@ public class TiqueteMapper {
         tiquete.setVehiculo(tiqueteDTO.getVehiculo());
         return null;
     }
+
+    public  static TiqueteDTO domainToDto(Tiquete tiquete){
+        return null;
+    }
 }

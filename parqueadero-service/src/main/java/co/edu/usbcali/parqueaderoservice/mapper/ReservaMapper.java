@@ -14,4 +14,8 @@ public class ReservaMapper {
         reserva.setParqueadero(reservaDTO.getParqueadero());
         return null;
     }
+
+    public static ReservaDTO domainToDto(Reserva reserva){
+        return null;
+    }
 }

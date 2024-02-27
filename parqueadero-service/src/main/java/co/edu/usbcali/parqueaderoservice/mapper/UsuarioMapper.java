@@ -13,4 +13,8 @@ public class UsuarioMapper {
         usuario.setContrasena(usuarioDTO.getContrasena());
         return null;
     }
+
+    public static UsuarioDTO domainToDto(Usuario usuario){
+        return null;
+    }
 }

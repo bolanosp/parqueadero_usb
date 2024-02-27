@@ -11,4 +11,8 @@ public class RolMapper {
         rol.setNombre(rolDTO.getNombre());
         return null;
     }
+
+    public static RolDTO domainToDto(Rol rol){
+        return null;
+    }
 }
