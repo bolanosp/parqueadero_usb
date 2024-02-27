@@ -1,6 +1,5 @@
 package co.edu.usbcali.parqueaderoservice.dto;
 
-import co.edu.usbcali.parqueaderoservice.models.Vehiculo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,10 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ParqueaderoDTO {
+public class TipoVehiculoDTO {
     private Integer id;
-    private String ubicacion;
-    private Boolean disponibilidad;
-    private Vehiculo vehiculo;
+    private String nombre;
+    private Double tarifa;
 }
 

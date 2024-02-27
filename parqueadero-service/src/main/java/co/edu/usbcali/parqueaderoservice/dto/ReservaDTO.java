@@ -19,4 +19,4 @@ public class ReservaDTO {
     private Vehiculo vehiculo;
     private Parqueadero parqueadero;
 }
-}
+
