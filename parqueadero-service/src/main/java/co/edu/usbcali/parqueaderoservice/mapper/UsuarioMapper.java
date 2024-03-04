@@ -4,17 +4,23 @@ import co.edu.usbcali.parqueaderoservice.dto.UsuarioDTO;
 import co.edu.usbcali.parqueaderoservice.models.Usuario;
 
 public class UsuarioMapper {
-    public static Usuario dtoToDomain(UsuarioDTO usuarioDTO){
-        Usuario usuario = new Usuario();
-        usuario.setId(usuarioDTO.getId());
-        usuario.setDocumentoIdentificacion(usuarioDTO.getDocumentoIdentificacion());
-        usuario.setNombre(usuarioDTO.getNombre());
-        usuario.setApellido(usuarioDTO.getApellido());
-        usuario.setContrasena(usuarioDTO.getContrasena());
-        return null;
+    public static UsuarioDTO domainToDto(Usuario usuario){
+        return UsuarioDTO
+                .builder()
+                .id(usuario.getId())
+                .nombre(usuario.getNombre())
+                .apellido(usuario.getApellido())
+                .contrasena(usuario.getContrasena())
+                .build();
     }
 
-    public static UsuarioDTO domainToDto(Usuario usuario){
-        return null;
+    public static Usuario dtoToDomain(UsuarioDTO usuarioDTO){
+        return Usuario
+                .builder()
+                .id(usuarioDTO.getId())
+                .nombre(usuarioDTO.getNombre())
+                .apellido(usuarioDTO.getApellido())
+                .contrasena(usuarioDTO.getContrasena())
+                .build();
     }
 }

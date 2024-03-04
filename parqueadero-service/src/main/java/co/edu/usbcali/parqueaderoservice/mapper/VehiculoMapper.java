@@ -9,14 +9,18 @@ public class VehiculoMapper {
                 .builder()
                 .id(vehiculo.getId())
                 .placa(vehiculo.getPlaca())
+                .tipoVehiculo((vehiculo != null) ? vehiculo.getTipoVehiculo().getId()
+                        : null)
+                .usuario((vehiculo != null) ? vehiculo.getUsuario().getId()
+                        : null)
                 .build();
     }
 
-    public static Vehiculo dtoToDomain(VehiculoDTO vehiculoDto){
+    public static Vehiculo dtoToDomain(VehiculoDTO vehiculoDTO){
         return Vehiculo
                 .builder()
-                .id(vehiculoDto.getId())
-                .placa(vehiculoDto.getPlaca())
+                .id(vehiculoDTO.getId())
+                .placa(vehiculoDTO.getPlaca())
                 .build();
     }
 }
