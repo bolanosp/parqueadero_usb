@@ -15,7 +15,7 @@ public class ParqueaderoMapper {
                 .build();
     }
 
-    public static Parqueadero domainToDto(ParqueaderoDTO parqueaderoDTO){
+    public static Parqueadero dtoToDomain(ParqueaderoDTO parqueaderoDTO){
         return Parqueadero
                 .builder()
                 .id(parqueaderoDTO.getId())

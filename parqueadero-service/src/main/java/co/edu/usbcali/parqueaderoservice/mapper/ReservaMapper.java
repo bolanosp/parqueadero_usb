@@ -17,7 +17,7 @@ public class ReservaMapper {
                 .build();
     }
 
-    public static Reserva domainToDto(ReservaDTO reservaDTO){
+    public static Reserva dtoToDomain(ReservaDTO reservaDTO){
         return Reserva
                 .builder()
                 .id(reservaDTO.getId())

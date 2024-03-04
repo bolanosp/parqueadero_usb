@@ -14,7 +14,7 @@ public class FacturaMapper {
                 .build();
     }
 
-    public static Factura domainToDto(FacturaDTO facturaDTO){
+    public static Factura dtoToDomain(FacturaDTO facturaDTO){
         return Factura
                 .builder()
                 .id(facturaDTO.getId())

@@ -12,7 +12,7 @@ public class RolMapper {
                 .build();
     }
 
-    public static Rol domainToDto(RolDTO rolDTO){
+    public static Rol dtoToDomain(RolDTO rolDTO){
         return Rol
                 .builder()
                 .id(rolDTO.getId())
