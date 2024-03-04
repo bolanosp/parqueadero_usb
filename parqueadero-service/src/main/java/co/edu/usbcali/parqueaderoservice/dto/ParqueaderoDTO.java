@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ParqueaderoDTO {
-
     private Integer id;
     private String ubicacion;
     private Boolean disponibilidad;

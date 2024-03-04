@@ -5,17 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TiqueteDTO {
+public class FacturaDTO {
     private Integer id;
-    private Date horaEntrada;
-    private Date horaSalida;
-    private Double descuento;
     private Double valor;
-    private Integer vehiculo;
 }
