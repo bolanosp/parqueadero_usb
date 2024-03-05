@@ -1,7 +1,11 @@
 package co.edu.usbcali.parqueaderoservice.mapper;
 
+import co.edu.usbcali.parqueaderoservice.dto.ParqueaderoDTO;
 import co.edu.usbcali.parqueaderoservice.dto.ReservaDTO;
+import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
 import co.edu.usbcali.parqueaderoservice.models.Reserva;
+
+import java.util.List;
 
 public class ReservaMapper {
     public static ReservaDTO domainToDto(Reserva reserva){
@@ -25,4 +29,13 @@ public class ReservaMapper {
                 .estado(reservaDTO.getEstado())
                 .build();
     }
+
+    public List<ParqueaderoDTO> domainToDtoList(List<Parqueadero> parqueaderos){
+        return parqueaderos.stream().map(ParqueaderoMapper::domainToDto).toList();
+    }
+
+    public List <Parqueadero> dtoToDomainList(List<ParqueaderoDTO> parqueaderosDto){
+        return  parqueaderosDto.stream().map(ParqueaderoMapper::dtoToDomain).toList();
+    }
+
 }
