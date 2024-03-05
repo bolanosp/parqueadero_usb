@@ -1,7 +1,11 @@
 package co.edu.usbcali.parqueaderoservice.mapper;
 
 import co.edu.usbcali.parqueaderoservice.dto.TipoVehiculoDTO;
+import co.edu.usbcali.parqueaderoservice.dto.TiqueteDTO;
 import co.edu.usbcali.parqueaderoservice.models.TipoVehiculo;
+import co.edu.usbcali.parqueaderoservice.models.Tiquete;
+
+import java.util.List;
 
 public class TipoVehiculoMapper {
     public static TipoVehiculoDTO domainToDto(TipoVehiculo tipoVehiculo){
@@ -20,5 +24,13 @@ public class TipoVehiculoMapper {
                 .nombre(tipoVehiculoDTO.getNombre())
                 .tarifa(tipoVehiculoDTO.getTarifa())
                 .build();
+    }
+
+    public static List<TipoVehiculoDTO> domainToDtoList (List<TipoVehiculo> tipoVehiculos){
+        return tipoVehiculos.stream().map(TipoVehiculoMapper::domainToDto).toList();
+    }
+
+    public static List<TipoVehiculo> dtoToDomainList (List<TipoVehiculoDTO> tipoVehiculoDTOS){
+        return tipoVehiculoDTOS.stream().map(TipoVehiculoMapper::dtoToDomain).toList();
     }
 }
