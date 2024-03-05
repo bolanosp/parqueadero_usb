@@ -3,6 +3,8 @@ package co.edu.usbcali.parqueaderoservice.mapper;
 import co.edu.usbcali.parqueaderoservice.dto.TiqueteDTO;
 import co.edu.usbcali.parqueaderoservice.models.Tiquete;
 
+import java.util.List;
+
 public class TiqueteMapper {
     public static TiqueteDTO domainToDto(Tiquete tiquete){
         return TiqueteDTO
@@ -26,5 +28,13 @@ public class TiqueteMapper {
                 .descuento(tiqueteDTO.getDescuento())
                 .valor(tiqueteDTO.getValor())
                 .build();
+    }
+
+    public static List<TiqueteDTO> domainToDtoList (List<Tiquete> tiquetes){
+        return tiquetes.stream().map(TiqueteMapper::domainToDto).toList();
+    }
+
+    public static List<Tiquete> dtoToDomainList (List<TiqueteDTO> tiqueteDTOS){
+        return tiqueteDTOS.stream().map(TiqueteMapper::dtoToDomain).toList();
     }
 }
