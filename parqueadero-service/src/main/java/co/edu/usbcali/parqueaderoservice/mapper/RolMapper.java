@@ -24,11 +24,11 @@ public class RolMapper {
                 .build();
     }
 
-    public List<RolDTO> domainToDtoList(List<Rol> roles){
+    public static List<RolDTO> domainToDtoList(List<Rol> roles){
         return roles.stream().map(RolMapper::domainToDto).toList();
     }
 
-    public List <Rol> dtoToDomainList(List<RolDTO> rolesDto){
+    public static List <Rol> dtoToDomainList(List<RolDTO> rolesDto){
         return  rolesDto.stream().map(RolMapper::dtoToDomain).toList();
     }
 }

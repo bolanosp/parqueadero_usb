@@ -22,11 +22,11 @@ public class FacturaMapper {
                 .build();
     }
 
-    public List <FacturaDTO> domainToDtoList(List<Factura> facturas){
+    public static List <FacturaDTO> domainToDtoList(List<Factura> facturas){
         return facturas.stream().map(FacturaMapper::domainToDto).toList();
     }
 
-    public List <Factura> dtoToDomainList(List<FacturaDTO> facturasDto){
+    public static List <Factura> dtoToDomainList(List<FacturaDTO> facturasDto){
         return  facturasDto.stream().map(FacturaMapper::dtoToDomain).toList();
     }
 }

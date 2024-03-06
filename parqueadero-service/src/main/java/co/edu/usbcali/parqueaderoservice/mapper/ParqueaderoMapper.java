@@ -26,11 +26,11 @@ public class ParqueaderoMapper {
                 .build();
     }
 
-    public List<ParqueaderoDTO> domainToDtoList(List<Parqueadero> parqueaderos){
+    public static List<ParqueaderoDTO> domainToDtoList(List<Parqueadero> parqueaderos){
         return parqueaderos.stream().map(ParqueaderoMapper::domainToDto).toList();
     }
 
-    public List <Parqueadero> dtoToDomainList(List<ParqueaderoDTO> parqueaderoDto){
+    public static List <Parqueadero> dtoToDomainList(List<ParqueaderoDTO> parqueaderoDto){
         return  parqueaderoDto.stream().map(ParqueaderoMapper::dtoToDomain).toList();
     }
 }
