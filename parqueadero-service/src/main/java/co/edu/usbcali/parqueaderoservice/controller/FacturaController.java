@@ -4,7 +4,10 @@ import co.edu.usbcali.parqueaderoservice.dto.FacturaDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.FacturaMapper;
 import co.edu.usbcali.parqueaderoservice.models.Factura;
 import co.edu.usbcali.parqueaderoservice.repository.FacturaRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,4 +46,13 @@ public class FacturaController {
         return  facturasDto;
     }
 
+    @GetMapping(value = "/buscarPorId/{id}")
+    public ResponseEntity<FacturaDTO> buscarPorId(@PathVariable Integer id){
+        Factura factura = facturaRepository.getReferenceById(id);
+        FacturaDTO facturaDTO = FacturaMapper.domainToDto(factura);
+        return new ResponseEntity<>(facturaDTO, HttpStatus.OK);
+    }
+
 }
+
+

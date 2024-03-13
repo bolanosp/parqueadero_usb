@@ -4,7 +4,10 @@ import co.edu.usbcali.parqueaderoservice.dto.ParqueaderoDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.ParqueaderoMapper;
 import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
 import co.edu.usbcali.parqueaderoservice.repository.ParqueaderoRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,6 +44,13 @@ public class ParqueaderoController {
 
         //4. Retorno los dtos transformados
         return  parqueaderosDto;
+    }
+
+    @GetMapping(value = "/buscarPorId/{id}")
+    public ResponseEntity<ParqueaderoDTO> buscarPorId(@PathVariable Integer id){
+        Parqueadero parqueadero = parqueaderoRepository.getReferenceById(id);
+        ParqueaderoDTO parqueaderoDTO = ParqueaderoMapper.domainToDto(parqueadero);
+        return new ResponseEntity<>(parqueaderoDTO, HttpStatus.OK);
     }
 
 }
