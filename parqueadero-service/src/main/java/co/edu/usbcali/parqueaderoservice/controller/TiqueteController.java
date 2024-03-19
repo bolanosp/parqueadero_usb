@@ -1,11 +1,13 @@
 package co.edu.usbcali.parqueaderoservice.controller;
 
-import co.edu.usbcali.parqueaderoservice.dto.TipoVehiculoDTO;
 import co.edu.usbcali.parqueaderoservice.dto.TiqueteDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.TiqueteMapper;
 import co.edu.usbcali.parqueaderoservice.models.Tiquete;
 import co.edu.usbcali.parqueaderoservice.repository.TiqueteRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -39,6 +41,13 @@ public class TiqueteController {
 
         //4. Retorno los dtos transformados
         return  tiquetesDto;
+    }
+
+    @GetMapping(value = "/buscarPorId/{id}")
+    public ResponseEntity<TiqueteDTO> buscarPorId(@PathVariable Integer id){
+        Tiquete tiquete = tiqueteRepository.getReferenceById(id);
+        TiqueteDTO tiqueteDTO = TiqueteMapper.domainToDto(tiquete);
+        return new ResponseEntity<>(tiqueteDTO, HttpStatus.OK);
     }
 
 }

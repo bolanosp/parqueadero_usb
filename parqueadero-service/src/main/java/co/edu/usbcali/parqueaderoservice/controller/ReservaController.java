@@ -4,7 +4,10 @@ import co.edu.usbcali.parqueaderoservice.dto.ReservaDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.ReservaMapper;
 import co.edu.usbcali.parqueaderoservice.models.Reserva;
 import co.edu.usbcali.parqueaderoservice.repository.ReservaRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -37,6 +40,13 @@ public class ReservaController {
 
         //4. Retorno los dtos transformados
         return  reservasDto;
+    }
+
+    @GetMapping(value = "/buscarPorId/{id}")
+    public ResponseEntity<ReservaDTO> buscarPorId(@PathVariable Integer id){
+        Reserva reserva = reservaRepository.getReferenceById(id);
+        ReservaDTO reservaDTO = ReservaMapper.domainToDto(reserva);
+        return new ResponseEntity<>(reservaDTO, HttpStatus.OK);
     }
 
 }

@@ -4,7 +4,10 @@ import co.edu.usbcali.parqueaderoservice.dto.RolDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.RolMapper;
 import co.edu.usbcali.parqueaderoservice.models.Rol;
 import co.edu.usbcali.parqueaderoservice.repository.RolRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -37,6 +40,13 @@ public class RolController {
 
         //4. Retorno los dtos transformados
         return  rolesDto;
+    }
+
+    @GetMapping(value = "/buscarPorId/{id}")
+    public ResponseEntity<RolDTO> buscarPorId(@PathVariable Integer id){
+        Rol rol = rolRepository.getReferenceById(id);
+        RolDTO rolDTO = RolMapper.domainToDto(rol);
+        return new ResponseEntity<>(rolDTO, HttpStatus.OK);
     }
 
 
