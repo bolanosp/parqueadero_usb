@@ -14,7 +14,7 @@ import java.util.List;
 public class RolController {
 
     //Declarar el Repository para hacer uso
-    public final RolRepository rolRepository;
+    private final RolRepository rolRepository;
 
     //Inyección de dependencias por Constructor
     public RolController(RolRepository rolRepository) {

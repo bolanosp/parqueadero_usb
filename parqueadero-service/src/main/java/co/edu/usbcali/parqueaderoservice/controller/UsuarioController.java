@@ -15,7 +15,7 @@ public class UsuarioController {
 
 
     //Declarar el Repository para hacer uso
-    public final UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     //Inyección de dependencias por Constructor
     public UsuarioController(UsuarioRepository usuarioRepository) {

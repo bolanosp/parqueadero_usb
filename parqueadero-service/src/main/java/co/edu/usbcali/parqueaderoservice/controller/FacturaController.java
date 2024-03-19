@@ -18,7 +18,7 @@ import java.util.List;
 public class FacturaController {
 
     //Declarar el Repository para hacer uso
-    public final FacturaRepository facturaRepository;
+    private final FacturaRepository facturaRepository;
 
     //Inyección de dependencias por Constructor
     public FacturaController(FacturaRepository facturaRepository) {

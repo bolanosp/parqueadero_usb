@@ -14,7 +14,7 @@ import java.util.List;
 public class ReservaController {
 
     //Declarar el Repository para hacer uso
-    public final ReservaRepository reservaRepository;
+    private final ReservaRepository reservaRepository;
 
     //Inyección de dependencias por Constructor
     public ReservaController(ReservaRepository reservaRepository) {

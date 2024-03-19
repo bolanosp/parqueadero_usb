@@ -18,7 +18,7 @@ import java.util.List;
 public class ParqueaderoController {
 
     //Declarar el Repository para hacer uso
-    public final ParqueaderoRepository parqueaderoRepository;
+    private final ParqueaderoRepository parqueaderoRepository;
 
     //Inyección de dependencias por Constructor
     public ParqueaderoController(ParqueaderoRepository parqueaderoRepository) {

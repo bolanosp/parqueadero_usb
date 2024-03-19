@@ -15,7 +15,7 @@ public class VehiculoController {
 
 
     //Declarar el Repository para hacer uso
-    public final VehiculoRepository vehiculoRepository;
+    private final VehiculoRepository vehiculoRepository;
 
     //Inyección de dependencias por Constructor
     public VehiculoController(VehiculoRepository vehiculoRepository) {

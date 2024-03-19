@@ -14,7 +14,7 @@ import java.util.List;
 public class TipoVehiculoController {
 
     //Declarar el Repository para hacer uso
-    public final TipoVehiculoRepository tipoVehiculoRepository;
+    private final TipoVehiculoRepository tipoVehiculoRepository;
 
     //Inyección de dependencias por Constructor
     public TipoVehiculoController(TipoVehiculoRepository tipoVehiculoRepository) {

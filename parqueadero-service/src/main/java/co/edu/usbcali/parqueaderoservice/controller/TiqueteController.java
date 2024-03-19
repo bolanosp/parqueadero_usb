@@ -15,7 +15,7 @@ public class TiqueteController {
 
 
     //Declarar el Repository para hacer uso
-    public final TiqueteRepository tiqueteRepository;
+    private final TiqueteRepository tiqueteRepository;
 
     //Inyección de dependencias por Constructor
     public TiqueteController(TiqueteRepository tiqueteRepository) {
