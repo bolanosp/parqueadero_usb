@@ -4,12 +4,10 @@ import co.edu.usbcali.parqueaderoservice.dto.FacturaDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.FacturaMapper;
 import co.edu.usbcali.parqueaderoservice.models.Factura;
 import co.edu.usbcali.parqueaderoservice.repository.FacturaRepository;
+import co.edu.usbcali.parqueaderoservice.service.FacturaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +18,13 @@ public class FacturaController {
     //Declarar el Repository para hacer uso
     private final FacturaRepository facturaRepository;
 
+    //Declarar el Service para usarlo
+    private final FacturaService facturaService;
+
     //Inyección de dependencias por Constructor
-    public FacturaController(FacturaRepository facturaRepository) {
+    public FacturaController(FacturaRepository facturaRepository, FacturaService facturaService) {
         this.facturaRepository = facturaRepository;
+        this.facturaService = facturaService;
     }
 
     @GetMapping(value = "/validarController")
@@ -51,6 +53,18 @@ public class FacturaController {
         Factura factura = facturaRepository.getReferenceById(id);
         FacturaDTO facturaDTO = FacturaMapper.domainToDto(factura);
         return new ResponseEntity<>(facturaDTO, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "crearNuevaFactura")
+    public ResponseEntity<FacturaDTO> crearNuevaFactura(@RequestBody FacturaDTO facturaDTO){
+        FacturaDTO facturaDTOresponse = null;
+        try {
+            facturaDTOresponse = facturaService.crearNuevaFactura(facturaDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return new ResponseEntity<>(facturaDTOresponse, HttpStatus.OK);
     }
 
 }
