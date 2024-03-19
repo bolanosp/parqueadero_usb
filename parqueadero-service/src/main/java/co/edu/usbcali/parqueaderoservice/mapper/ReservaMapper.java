@@ -30,12 +30,12 @@ public class ReservaMapper {
                 .build();
     }
 
-    public List<ParqueaderoDTO> domainToDtoList(List<Parqueadero> parqueaderos){
-        return parqueaderos.stream().map(ParqueaderoMapper::domainToDto).toList();
+    public static List<ReservaDTO> domainToDtoList(List<Reserva> reservas){
+        return reservas.stream().map(ReservaMapper::domainToDto).toList();
     }
 
-    public List <Parqueadero> dtoToDomainList(List<ParqueaderoDTO> parqueaderosDto){
-        return  parqueaderosDto.stream().map(ParqueaderoMapper::dtoToDomain).toList();
+    public static List <Reserva> dtoToDomainList(List<ReservaDTO> reservasDto){
+        return  reservasDto.stream().map(ReservaMapper::dtoToDomain).toList();
     }
 
 }
