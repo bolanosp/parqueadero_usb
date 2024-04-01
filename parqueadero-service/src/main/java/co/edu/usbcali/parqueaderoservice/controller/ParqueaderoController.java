@@ -6,10 +6,7 @@ import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
 import co.edu.usbcali.parqueaderoservice.repository.ParqueaderoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -51,6 +48,17 @@ public class ParqueaderoController {
         Parqueadero parqueadero = parqueaderoRepository.getReferenceById(id);
         ParqueaderoDTO parqueaderoDTO = ParqueaderoMapper.domainToDto(parqueadero);
         return new ResponseEntity<>(parqueaderoDTO, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "crearNuevoParqueadero")
+    public ResponseEntity<ParqueaderoDTO> crearNuevoParqueadero(@RequestBody ParqueaderoDTO parqueaderoDTO){
+        ParqueaderoDTO parqueaderoDTOresponse = null;
+        try {
+            parqueaderoDTOresponse = parqueaderoService.crearNuevoParqueadero(parqueaderoDTO);
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        return  new ResponseEntity<>(parqueaderoDTOresponse,HttpStatus.OK);
     }
 
 }
