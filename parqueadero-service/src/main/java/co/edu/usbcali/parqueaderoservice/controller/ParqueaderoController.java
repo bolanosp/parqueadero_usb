@@ -4,6 +4,7 @@ import co.edu.usbcali.parqueaderoservice.dto.ParqueaderoDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.ParqueaderoMapper;
 import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
 import co.edu.usbcali.parqueaderoservice.repository.ParqueaderoRepository;
+import co.edu.usbcali.parqueaderoservice.service.ParqueaderoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +18,13 @@ public class ParqueaderoController {
     //Declarar el Repository para hacer uso
     private final ParqueaderoRepository parqueaderoRepository;
 
+    //Declarar el Service para hacer uso
+    private final ParqueaderoService parqueaderoService;
+
     //Inyección de dependencias por Constructor
-    public ParqueaderoController(ParqueaderoRepository parqueaderoRepository) {
+    public ParqueaderoController(ParqueaderoRepository parqueaderoRepository, ParqueaderoService parqueaderoService) {
         this.parqueaderoRepository = parqueaderoRepository;
+        this.parqueaderoService = parqueaderoService;
     }
 
     @GetMapping(value = "/validarController")
