@@ -1,5 +1,6 @@
 package co.edu.usbcali.parqueaderoservice.controller;
 
+import co.edu.usbcali.parqueaderoservice.dto.FacturaDTO;
 import co.edu.usbcali.parqueaderoservice.dto.RolDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.RolMapper;
 import co.edu.usbcali.parqueaderoservice.models.Rol;
@@ -9,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -52,6 +55,18 @@ public class RolController {
         Rol rol = rolRepository.getReferenceById(id);
         RolDTO rolDTO = RolMapper.domainToDto(rol);
         return new ResponseEntity<>(rolDTO, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "crearNuevoRol")
+    public ResponseEntity<RolDTO> crearNuevoRol(@RequestBody RolDTO rolDTO){
+        RolDTO rolDTOresponse = null;
+        try {
+            rolDTOresponse = rolService.crearNuevoRol(rolDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return new ResponseEntity<>(rolDTOresponse, HttpStatus.OK);
     }
 
 
