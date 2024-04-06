@@ -1,6 +1,5 @@
 package co.edu.usbcali.parqueaderoservice.controller;
 
-import co.edu.usbcali.parqueaderoservice.dto.FacturaDTO;
 import co.edu.usbcali.parqueaderoservice.dto.ReservaDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.ReservaMapper;
 import co.edu.usbcali.parqueaderoservice.models.Reserva;
@@ -17,10 +16,8 @@ import java.util.List;
 
 public class ReservaController {
 
-    //Declarar el Repository para hacer uso
+    //Declarar el Repository y Service para hacer uso
     private final ReservaRepository reservaRepository;
-
-    //Declarar el Service para usarlo
     private final ReservaService reservaService;
 
     //Inyección de dependencias por Constructor

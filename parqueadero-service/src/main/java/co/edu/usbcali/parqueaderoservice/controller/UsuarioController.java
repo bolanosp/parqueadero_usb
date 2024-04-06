@@ -4,22 +4,28 @@ import co.edu.usbcali.parqueaderoservice.dto.UsuarioDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.UsuarioMapper;
 import co.edu.usbcali.parqueaderoservice.models.Usuario;
 import co.edu.usbcali.parqueaderoservice.repository.UsuarioRepository;
+import co.edu.usbcali.parqueaderoservice.service.ReservaService;
+import co.edu.usbcali.parqueaderoservice.service.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
 public class UsuarioController {
 
 
-    //Declarar el Repository para hacer uso
+    //Declarar el Repository y Service para hacer uso
     private final UsuarioRepository usuarioRepository;
+    private final UsuarioService usuarioService;
 
     //Inyección de dependencias por Constructor
-    public UsuarioController(UsuarioRepository usuarioRepository) {
+    public UsuarioController(UsuarioRepository usuarioRepository, UsuarioService usuarioService) {
         this.usuarioRepository = usuarioRepository;
+        this.usuarioService = usuarioService;
     }
 
     @GetMapping(value = "/validarController")
@@ -48,6 +54,18 @@ public class UsuarioController {
         Usuario usuario = usuarioRepository.getReferenceById(id);
         UsuarioDTO usuarioDTO = UsuarioMapper.domainToDto(usuario);
         return new ResponseEntity<>(usuarioDTO, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "crearNuevoUsuario")
+    public ResponseEntity<UsuarioDTO> crearNuevoUsuario(@RequestBody UsuarioDTO usuarioDTO){
+        UsuarioDTO usuarioDTOresponse = null;
+        try {
+            usuarioDTOresponse = usuarioService.crearNuevoUsuario(usuarioDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return new ResponseEntity<>(usuarioDTOresponse, HttpStatus.OK);
     }
 
 }

@@ -4,18 +4,21 @@ import co.edu.usbcali.parqueaderoservice.dto.ReservaDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.ReservaMapper;
 import co.edu.usbcali.parqueaderoservice.models.Reserva;
 import co.edu.usbcali.parqueaderoservice.repository.ReservaRepository;
+import co.edu.usbcali.parqueaderoservice.service.ReservaService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ReservaServiceImpl {
+public class ReservaServiceImpl implements ReservaService {
 
     private final ReservaRepository reservaRepository;
 
     public ReservaServiceImpl(ReservaRepository reservaRepository) {
         this.reservaRepository = reservaRepository;
     }
+
     @Override
     public ReservaDTO crearNuevaReserva (ReservaDTO reservaDTO) throws Exception{
+
         if(reservaDTO == null){
             throw new Exception("Reserva es nulo");
         }
@@ -26,12 +29,11 @@ public class ReservaServiceImpl {
         //Guardar entidad
         reserva = reservaRepository.save(reserva);
 
-        //Converyimos a DTO
+        //Convertimos a DTO
         reservaDTO = ReservaMapper.domainToDto(reserva);
 
         //Retornamos el ReservaDTO
         return reservaDTO;
-
 
     }
 }

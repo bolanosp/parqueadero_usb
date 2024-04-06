@@ -1,24 +1,30 @@
 package co.edu.usbcali.parqueaderoservice.controller;
 
 import co.edu.usbcali.parqueaderoservice.dto.TipoVehiculoDTO;
+import co.edu.usbcali.parqueaderoservice.dto.TiqueteDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.TipoVehiculoMapper;
 import co.edu.usbcali.parqueaderoservice.models.TipoVehiculo;
 import co.edu.usbcali.parqueaderoservice.repository.TipoVehiculoRepository;
+import co.edu.usbcali.parqueaderoservice.service.TipoVehiculoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
 public class TipoVehiculoController {
 
-    //Declarar el Repository para hacer uso
+    //Declarar el Repository y el Service para hacer uso
     private final TipoVehiculoRepository tipoVehiculoRepository;
+    private final TipoVehiculoService tipoVehiculoService;
 
     //Inyección de dependencias por Constructor
-    public TipoVehiculoController(TipoVehiculoRepository tipoVehiculoRepository) {
+    public TipoVehiculoController(TipoVehiculoRepository tipoVehiculoRepository, TipoVehiculoService tipoVehiculoService) {
         this.tipoVehiculoRepository = tipoVehiculoRepository;
+        this.tipoVehiculoService = tipoVehiculoService;
     }
 
     @GetMapping(value = "/validarController")
@@ -47,6 +53,18 @@ public class TipoVehiculoController {
         TipoVehiculo tipoVehiculo = tipoVehiculoRepository.getReferenceById(id);
         TipoVehiculoDTO tipoVehiculoDTO = TipoVehiculoMapper.domainToDto(tipoVehiculo);
         return new ResponseEntity<>(tipoVehiculoDTO, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "crearNuevoTipoVehiculo")
+    public ResponseEntity<TipoVehiculoDTO> crearNuevoTipoVehiculo(@RequestBody TipoVehiculoDTO tipoVehiculoDTO){
+        TipoVehiculoDTO tipoVehiculoDTOresponse = null;
+        try {
+            tipoVehiculoDTOresponse = tipoVehiculoService.crearNuevoTipoVehiculo(tipoVehiculoDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return new ResponseEntity<>(tipoVehiculoDTOresponse, HttpStatus.OK);
     }
 
 }

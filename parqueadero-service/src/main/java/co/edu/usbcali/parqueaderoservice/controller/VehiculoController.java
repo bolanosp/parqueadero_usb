@@ -4,22 +4,27 @@ import co.edu.usbcali.parqueaderoservice.dto.VehiculoDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.VehiculoMapper;
 import co.edu.usbcali.parqueaderoservice.models.Vehiculo;
 import co.edu.usbcali.parqueaderoservice.repository.VehiculoRepository;
+import co.edu.usbcali.parqueaderoservice.service.VehiculoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
 public class VehiculoController {
 
 
-    //Declarar el Repository para hacer uso
+    //Declarar el Repository y Service para hacer uso
     private final VehiculoRepository vehiculoRepository;
+    private final VehiculoService vehiculoService;
 
     //Inyección de dependencias por Constructor
-    public VehiculoController(VehiculoRepository vehiculoRepository) {
+    public VehiculoController(VehiculoRepository vehiculoRepository, VehiculoService vehiculoService) {
         this.vehiculoRepository = vehiculoRepository;
+        this.vehiculoService = vehiculoService;
     }
 
     @GetMapping(value = "/validarController")
@@ -48,6 +53,18 @@ public class VehiculoController {
         Vehiculo vehiculo = vehiculoRepository.getReferenceById(id);
         VehiculoDTO vehiculoDTO = VehiculoMapper.domainToDto(vehiculo);
         return new ResponseEntity<>(vehiculoDTO, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "crearNuevoVehiculo")
+    public ResponseEntity<VehiculoDTO> crearNuevoVehiculo(@RequestBody VehiculoDTO vehiculoDTO){
+        VehiculoDTO vehiculoDTOresponse = null;
+        try {
+            vehiculoDTOresponse = vehiculoService.crearNuevoVehiculo(vehiculoDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return new ResponseEntity<>(vehiculoDTOresponse, HttpStatus.OK);
     }
 
 }

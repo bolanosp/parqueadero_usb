@@ -4,12 +4,16 @@ import co.edu.usbcali.parqueaderoservice.dto.ParqueaderoDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.ParqueaderoMapper;
 import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
 import co.edu.usbcali.parqueaderoservice.repository.ParqueaderoRepository;
+import co.edu.usbcali.parqueaderoservice.service.ParqueaderoService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ParqueaderoServiceImpl{
+public class ParqueaderoServiceImpl implements ParqueaderoService {
+
+    private final ParqueaderoRepository parqueaderoRepository;
 
     public ParqueaderoServiceImpl(ParqueaderoRepository parqueaderoRepository) {
+        this.parqueaderoRepository = parqueaderoRepository;
     }
 
     @Override
@@ -27,10 +31,10 @@ public class ParqueaderoServiceImpl{
         }
 
         //Convertir a entidad
-        Parqueadero parqueadero = ParqueaderoMapper.dtoToDomain(ParqueaderoDTO);
+        Parqueadero parqueadero = ParqueaderoMapper.dtoToDomain(parqueaderoDTO);
 
         //Guardar entidad
-        parqueadero =ParqueaderoRepository.save(parqueadero);
+        parqueadero = parqueaderoRepository.save(parqueadero);
 
         //Convertimos a DTO
         parqueaderoDTO = ParqueaderoMapper.domainToDto(parqueadero);

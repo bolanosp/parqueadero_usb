@@ -4,10 +4,11 @@ import co.edu.usbcali.parqueaderoservice.dto.RolDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.RolMapper;
 import co.edu.usbcali.parqueaderoservice.models.Rol;
 import co.edu.usbcali.parqueaderoservice.repository.RolRepository;
+import co.edu.usbcali.parqueaderoservice.service.RolService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RolServiceImpl {
+public class RolServiceImpl implements RolService {
     private final RolRepository rolRepository;
 
     public RolServiceImpl(RolRepository rolRepository) {
@@ -15,7 +16,7 @@ public class RolServiceImpl {
     }
 
     @Override
-    public RolDTO crearNuevoROl(RolDTO rolDTO) throws  Exception{
+    public RolDTO crearNuevoRol(RolDTO rolDTO) throws  Exception{
 
         //Validar que rolDTO no sea nulo
         if(rolDTO == null){

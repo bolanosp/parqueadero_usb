@@ -4,10 +4,11 @@ import co.edu.usbcali.parqueaderoservice.dto.TipoVehiculoDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.TipoVehiculoMapper;
 import co.edu.usbcali.parqueaderoservice.models.TipoVehiculo;
 import co.edu.usbcali.parqueaderoservice.repository.TipoVehiculoRepository;
+import co.edu.usbcali.parqueaderoservice.service.TipoVehiculoService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TipoVehiculoServiceImpl {
+public class TipoVehiculoServiceImpl implements TipoVehiculoService {
 
     private final TipoVehiculoRepository tipoVehiculoRepository;
 
@@ -18,7 +19,6 @@ public class TipoVehiculoServiceImpl {
     @Override
     public TipoVehiculoDTO crearNuevoTipoVehiculo(TipoVehiculoDTO tipoVehiculoDTO) throws Exception{
 
-        //Validaciones de atributos
 
         //Validar que tipoVehiculoDTO no sea nulo
         if(tipoVehiculoDTO == null){
@@ -34,6 +34,7 @@ public class TipoVehiculoServiceImpl {
         //Convertimos a DTO
         tipoVehiculoDTO = TipoVehiculoMapper.domainToDto(tipoVehiculo);
 
+        //Retornamos el TipoVehiculoDTO
         return tipoVehiculoDTO;
 
     }

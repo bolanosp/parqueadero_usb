@@ -4,22 +4,27 @@ import co.edu.usbcali.parqueaderoservice.dto.TiqueteDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.TiqueteMapper;
 import co.edu.usbcali.parqueaderoservice.models.Tiquete;
 import co.edu.usbcali.parqueaderoservice.repository.TiqueteRepository;
+import co.edu.usbcali.parqueaderoservice.service.TiqueteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
 public class TiqueteController {
 
 
-    //Declarar el Repository para hacer uso
+    //Declarar el Repository y el Service para hacer uso
     private final TiqueteRepository tiqueteRepository;
+    private final TiqueteService tiqueteService;
 
     //Inyección de dependencias por Constructor
-    public TiqueteController(TiqueteRepository tiqueteRepository) {
+    public TiqueteController(TiqueteRepository tiqueteRepository, TiqueteService tiqueteService) {
         this.tiqueteRepository = tiqueteRepository;
+        this.tiqueteService = tiqueteService;
     }
 
     @GetMapping(value = "/validarController")
@@ -48,6 +53,18 @@ public class TiqueteController {
         Tiquete tiquete = tiqueteRepository.getReferenceById(id);
         TiqueteDTO tiqueteDTO = TiqueteMapper.domainToDto(tiquete);
         return new ResponseEntity<>(tiqueteDTO, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "crearNuevoTiquete")
+    public ResponseEntity<TiqueteDTO> crearNuevoTiquete(@RequestBody TiqueteDTO tiqueteDTO){
+        TiqueteDTO tiqueteDTOresponse = null;
+        try {
+            tiqueteDTOresponse = tiqueteService.crearNuevoTiquete(tiqueteDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return new ResponseEntity<>(tiqueteDTOresponse, HttpStatus.OK);
     }
 
 }
