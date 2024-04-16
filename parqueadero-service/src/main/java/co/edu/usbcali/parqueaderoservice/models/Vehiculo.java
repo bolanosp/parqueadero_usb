@@ -23,10 +23,10 @@ public class Vehiculo {
     private String placa;
 
     @OneToOne
-    @JoinColumn(name = "idTipoVehiculo", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_tipo_vehiculo", referencedColumnName = "id", nullable = false)
     private TipoVehiculo tipoVehiculo;
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
     private Usuario usuario;
 }

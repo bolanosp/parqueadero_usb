@@ -22,7 +22,7 @@ public class Usuario {
     private Integer id;
 
     @Column(nullable = false, unique = true)
-    private String documentoIdentificacion;
+    private String documento_id;
 
     @Column(nullable = false)
     private String nombre;

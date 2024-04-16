@@ -26,6 +26,6 @@ public class Parqueadero {
     private Boolean disponibilidad;
 
     @OneToOne
-    @JoinColumn(name = "idVehiculo", referencedColumnName = "id")
+    @JoinColumn(name = "id_vehiculo", referencedColumnName = "id")
     private Vehiculo vehiculo;
 }

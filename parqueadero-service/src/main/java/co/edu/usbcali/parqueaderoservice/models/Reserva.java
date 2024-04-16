@@ -28,10 +28,10 @@ public class Reserva {
     private String estado;
 
     @ManyToOne
-    @JoinColumn(name = "idVehiculo", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_vehiculo", referencedColumnName = "id", nullable = false)
     private Vehiculo vehiculo;
 
     @OneToOne
-    @JoinColumn(name = "idParqueadero", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_parqueadero", referencedColumnName = "id", nullable = false)
     private Parqueadero parqueadero;
 }
