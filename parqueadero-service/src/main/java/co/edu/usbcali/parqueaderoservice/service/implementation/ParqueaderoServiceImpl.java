@@ -5,15 +5,19 @@ import co.edu.usbcali.parqueaderoservice.mapper.ParqueaderoMapper;
 import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
 import co.edu.usbcali.parqueaderoservice.repository.ParqueaderoRepository;
 import co.edu.usbcali.parqueaderoservice.service.ParqueaderoService;
+import co.edu.usbcali.parqueaderoservice.service.VehiculoService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ParqueaderoServiceImpl implements ParqueaderoService {
 
     private final ParqueaderoRepository parqueaderoRepository;
+    private final VehiculoService vehiculoService;
 
-    public ParqueaderoServiceImpl(ParqueaderoRepository parqueaderoRepository) {
+
+    public ParqueaderoServiceImpl(ParqueaderoRepository parqueaderoRepository, VehiculoService paisService, VehiculoService vehiculoService) {
         this.parqueaderoRepository = parqueaderoRepository;
+        this.vehiculoService = vehiculoService;
     }
 
     @Override
@@ -25,9 +29,19 @@ public class ParqueaderoServiceImpl implements ParqueaderoService {
             throw new Exception("Parqueadero es nulo");
         }
 
-        //Validar el valor de ubicacion
+        //Validar ubicación
         if(parqueaderoDTO.getUbicacion() == null || parqueaderoDTO.getUbicacion().isBlank()){
-            throw  new Exception("Debe ingresar la ubicación");
+            throw new Exception("Debe ingresar la ubicación");
+        }
+
+        //Validar disponibilidad
+        if(parqueaderoDTO.getDisponibilidad() == null){
+            throw new Exception("Debe ingresar la disponibilidad");
+        }
+
+        //Validar vehículo
+        if(parqueaderoDTO.getVehiculo() == null || parqueaderoDTO.getVehiculo().equals(0)){
+            throw new Exception("Debe relacionarse con un vehículo válido");
         }
 
         //Convertir a entidad

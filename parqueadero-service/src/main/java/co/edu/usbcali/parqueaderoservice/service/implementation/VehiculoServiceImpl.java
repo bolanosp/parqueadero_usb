@@ -36,4 +36,13 @@ public class VehiculoServiceImpl implements VehiculoService {
         return vehiculoDTO;
 
     }
+
+    @Override
+    public Vehiculo buscarVehiculoPorId(Integer id) throws Exception {
+        if(id == null || id.equals(0)){
+            throw new Exception("No se puede consultar el id");
+        }
+        return vehiculoRepository.getReferenceById(id);
+    }
+
 }
