@@ -19,13 +19,13 @@ public class Parqueadero {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "ubicacion")
     private String ubicacion;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "disponibilidad")
     private Boolean disponibilidad;
 
     @OneToOne
-    @JoinColumn(name = "idVehiculo", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "idVehiculo", referencedColumnName = "id")
     private Vehiculo vehiculo;
 }

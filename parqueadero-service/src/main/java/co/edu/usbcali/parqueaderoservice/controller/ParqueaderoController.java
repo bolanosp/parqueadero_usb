@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/parqueadero")
+@CrossOrigin("*")
 public class ParqueaderoController {
 
     //Declarar el Repository para hacer uso
