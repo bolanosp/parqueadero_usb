@@ -7,13 +7,13 @@ import co.edu.usbcali.parqueaderoservice.repository.VehiculoRepository;
 import co.edu.usbcali.parqueaderoservice.service.VehiculoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/vehiculo")
+@CrossOrigin("*")
 public class VehiculoController {
 
 

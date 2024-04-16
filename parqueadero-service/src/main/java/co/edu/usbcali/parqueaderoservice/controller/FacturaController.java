@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/factura")
+@CrossOrigin("*")
 public class FacturaController {
 
     //Declarar el Repository para hacer uso

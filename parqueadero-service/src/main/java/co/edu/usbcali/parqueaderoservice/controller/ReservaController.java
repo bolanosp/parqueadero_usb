@@ -7,13 +7,13 @@ import co.edu.usbcali.parqueaderoservice.repository.ReservaRepository;
 import co.edu.usbcali.parqueaderoservice.service.ReservaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/reserva")
+@CrossOrigin("*")
 public class ReservaController {
 
     //Declarar el Repository y Service para hacer uso
