@@ -3,6 +3,8 @@ package co.edu.usbcali.parqueaderoservice.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,10 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.usbcali.parqueaderoservice.dto.UsuarioDto;
-import co.edu.usbcali.parqueaderoservice.models.Usuario;
 import co.edu.usbcali.parqueaderoservice.service.UsuarioService;
 
 @RestController
@@ -24,27 +26,28 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping
-    public List<Usuario> getAllUsuarios() {
-        return usuarioService.getAllUsuarios();
+    public ResponseEntity<List<UsuarioDto>> getAllUsuarios() {
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getAllUsuarios());
     }
 
     @PostMapping
-    public UsuarioDto crearUsuario(@RequestBody UsuarioDto usuarioDTO) {
-        return usuarioService.crearUsuario(usuarioDTO);
+    public ResponseEntity<UsuarioDto> crearUsuario(@RequestBody UsuarioDto usuarioDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.crearUsuario(usuarioDTO));
     }
 
     @GetMapping("/{id}")
-    public UsuarioDto obtenerUsuario(@PathVariable Long id) throws Exception {
-        return usuarioService.obtenerUsuario(id);
+    public ResponseEntity<UsuarioDto> obtenerUsuario(@PathVariable Long id) throws Exception {
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.obtenerUsuario(id));
     }
 
     @PutMapping("/{id}")
-    public void actualizarUsuario(@PathVariable Long id, @RequestBody UsuarioDto usuarioDTO) throws Exception {
+    public ResponseEntity<UsuarioDto> actualizarUsuario(@PathVariable Long id, @RequestBody UsuarioDto usuarioDTO) throws Exception {
         usuarioDTO.setId(id);
-        usuarioService.actualizarUsuario(usuarioDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.actualizarUsuario(usuarioDTO));
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminarUsuario(@PathVariable Long id) {
         usuarioService.eliminarUsuario(id);
     }
