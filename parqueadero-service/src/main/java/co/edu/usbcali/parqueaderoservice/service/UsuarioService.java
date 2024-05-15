@@ -15,8 +15,9 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public List<Usuario> getAllUsuarios() {
-        return usuarioRepository.findAll();
+    public List<UsuarioDto> getAllUsuarios() {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        return UsuarioMapper.userToUsersDTO(usuarios);
     }
 
     public UsuarioDto crearUsuario(UsuarioDto usuarioDTO) {
