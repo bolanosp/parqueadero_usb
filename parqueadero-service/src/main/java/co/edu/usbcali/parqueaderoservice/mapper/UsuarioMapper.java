@@ -18,6 +18,7 @@ public class UsuarioMapper {
         usuarioDto.setNombre(usuario.getNombre());
         usuarioDto.setApellido(usuario.getApellido());
         usuarioDto.setCorreo_electronico(usuario.getCorreo_electronico());
+        usuarioDto.setNombre_usuario(usuario.getNombre_usuario());
 
         return usuarioDto;
     }
@@ -32,6 +33,7 @@ public class UsuarioMapper {
         usuario.setNombre(usuarioDto.getNombre());
         usuario.setApellido(usuarioDto.getApellido());
         usuario.setCorreo_electronico(usuarioDto.getCorreo_electronico());
+        usuario.setNombre_usuario(usuarioDto.getNombre_usuario());
 
         return usuario;
     }
