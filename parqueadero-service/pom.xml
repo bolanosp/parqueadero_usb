@@ -14,7 +14,7 @@
 	<name>parqueadero-service</name>
 	<description>Project for Backend</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>22</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
