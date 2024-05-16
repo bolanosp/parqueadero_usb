@@ -1,8 +1,7 @@
 package co.edu.usbcali.parqueaderoservice.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,16 +17,16 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "El nombre no puede ser nulo")
+    @Column(nullable = false)
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
-    @NotEmpty(message = "El apellido no puede ser nulo")
+    @Column(nullable = false)
     private String apellido;
 
-    @NotEmpty(message = "El correo electronico no puede ser nulo")
-    @Email(message = "El correo electrónico no tiene un formato válido")
+    @Column(nullable = false, unique = true)
     private String correo_electronico;
 
-    @NotEmpty(message = "El nombre de usuario no puede ser nulo")
+    @Column(nullable = false, unique = true)
     private String nombre_usuario;
 }
