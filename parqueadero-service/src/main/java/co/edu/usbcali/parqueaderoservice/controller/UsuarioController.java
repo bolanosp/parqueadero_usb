@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.usbcali.parqueaderoservice.dto.UsuarioDto;
 import co.edu.usbcali.parqueaderoservice.service.UsuarioService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -33,7 +34,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioDto> crearUsuario(@RequestBody UsuarioDto usuarioDTO) {
+    public ResponseEntity<UsuarioDto> crearUsuario(@Valid @RequestBody UsuarioDto usuarioDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.crearUsuario(usuarioDTO));
     }
 
