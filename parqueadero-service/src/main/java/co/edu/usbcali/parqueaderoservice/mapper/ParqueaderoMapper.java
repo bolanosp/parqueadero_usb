@@ -55,7 +55,7 @@ public class ParqueaderoMapper {
                     try {
                         return ParqueaderoMapper.dtoToDomain(parqueaderoDTO);
                     } catch (Exception e) {
-                        return null; // o lanzar una nueva excepción, según corresponda
+                        return null;
                     }
                 })
                 .toList();
