@@ -17,30 +17,29 @@ public class VehiculoServiceImpl implements VehiculoService {
     }
 
     @Override
-    public VehiculoDTO crearNuevoVehiculo(VehiculoDTO vehiculoDTO) throws Exception{
-
-        if(vehiculoDTO == null){
+    public VehiculoDTO crearNuevoVehiculo(VehiculoDTO vehiculoDTO) throws Exception {
+        // Validar que vehiculoDTO no sea nulo
+        if (vehiculoDTO == null) {
             throw new Exception("Vehículo es nulo");
         }
 
-        //Convertir a entidad
+        // Convertir a entidad
         Vehiculo vehiculo = VehiculoMapper.dtoToDomain(vehiculoDTO);
 
-        //Guardar entidad
+        // Guardar entidad
         vehiculo = vehiculoRepository.save(vehiculo);
 
-        //Convertimos a DTO
-        vehiculoDTO = VehiculoMapper.domainToDto(vehiculo);
+        // Convertir entidad guardada a DTO
+        VehiculoDTO vehiculoGuardadoDTO = VehiculoMapper.domainToDto(vehiculo);
 
-        //Retornamos el VehiculoDTO
-        return vehiculoDTO;
-
+        // Retornar el VehiculoDTO guardado
+        return vehiculoGuardadoDTO;
     }
 
     @Override
     public Vehiculo buscarVehiculoPorId(Integer id) throws Exception {
-        if(id == null || id.equals(0)){
-            throw new Exception("No se puede consultar el id");
+        if (id == null || id.equals(0)) {
+            throw new Exception("No se puede consultar el ID");
         }
         return vehiculoRepository.getReferenceById(id);
     }

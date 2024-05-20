@@ -15,6 +15,7 @@ public class VehiculoMapper {
                         : null)
                 .usuario((vehiculo != null) ? vehiculo.getUsuario().getId()
                         : null)
+
                 .build();
     }
 

@@ -3,6 +3,7 @@ package co.edu.usbcali.parqueaderoservice.service.implementation;
 import co.edu.usbcali.parqueaderoservice.dto.ParqueaderoDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.ParqueaderoMapper;
 import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
+import co.edu.usbcali.parqueaderoservice.models.Vehiculo;
 import co.edu.usbcali.parqueaderoservice.repository.ParqueaderoRepository;
 import co.edu.usbcali.parqueaderoservice.service.ParqueaderoService;
 import co.edu.usbcali.parqueaderoservice.service.VehiculoService;
@@ -15,7 +16,7 @@ public class ParqueaderoServiceImpl implements ParqueaderoService {
     private final VehiculoService vehiculoService;
 
 
-    public ParqueaderoServiceImpl(ParqueaderoRepository parqueaderoRepository, VehiculoService paisService, VehiculoService vehiculoService) {
+    public ParqueaderoServiceImpl(ParqueaderoRepository parqueaderoRepository, VehiculoService vehiculoService) {
         this.parqueaderoRepository = parqueaderoRepository;
         this.vehiculoService = vehiculoService;
     }
@@ -39,10 +40,15 @@ public class ParqueaderoServiceImpl implements ParqueaderoService {
             throw new Exception("Debe ingresar la disponibilidad");
         }
 
-        //Validar vehículo
-        if(parqueaderoDTO.getVehiculo() == null || parqueaderoDTO.getVehiculo().equals(0)){
+        // Validar vehículo
+        if (parqueaderoDTO.getVehiculo() == null) {
             throw new Exception("Debe relacionarse con un vehículo válido");
         }
+        Vehiculo vehiculo = vehiculoService.buscarVehiculoPorId(parqueaderoDTO.getVehiculo());
+        if (vehiculo == null) {
+            throw new Exception("Vehículo no encontrado en la base de datos");
+        }
+
 
         //Convertir a entidad
         Parqueadero parqueadero = ParqueaderoMapper.dtoToDomain(parqueaderoDTO);
