@@ -7,23 +7,29 @@ import java.util.List;
 
 public class UsuarioMapper {
     public static UsuarioDTO domainToDto(Usuario usuario){
-        return UsuarioDTO
+        UsuarioDTO usuarioDTO = UsuarioDTO
                 .builder()
                 .id(usuario.getId())
+                .documentoIdentificacion(usuario.getDocumentoIdentificacion())
                 .nombre(usuario.getNombre())
                 .apellido(usuario.getApellido())
                 .contrasena(usuario.getContrasena())
                 .build();
+
+        return usuarioDTO;
     }
 
     public static Usuario dtoToDomain(UsuarioDTO usuarioDTO){
-        return Usuario
-                .builder()
+
+        Usuario usuario = Usuario.builder()
                 .id(usuarioDTO.getId())
+                .documentoIdentificacion(usuarioDTO.getDocumentoIdentificacion())
                 .nombre(usuarioDTO.getNombre())
                 .apellido(usuarioDTO.getApellido())
                 .contrasena(usuarioDTO.getContrasena())
                 .build();
+
+        return usuario;
     }
 
     public static List<UsuarioDTO> domainToDtoList (List<Usuario> usuarios){

@@ -19,6 +19,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public UsuarioDTO crearNuevoUsuario (UsuarioDTO usuarioDTO) throws Exception{
 
+        System.out.println("Creando nuevo usuario: " + usuarioDTO);
+
+        //Validar que usuarioDTO no sea nulo
         if(usuarioDTO == null){
             throw new Exception("Usuario es nulo");
         }

@@ -18,6 +18,9 @@ public class VehiculoServiceImpl implements VehiculoService {
 
     @Override
     public VehiculoDTO crearNuevoVehiculo(VehiculoDTO vehiculoDTO) throws Exception {
+
+
+
         // Validar que vehiculoDTO no sea nulo
         if (vehiculoDTO == null) {
             throw new Exception("Vehículo es nulo");
