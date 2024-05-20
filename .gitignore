@@ -1,1 +1,3 @@
 */.idea
+parqueadero-service/src/main/resources/application.properties
+/parqueadero-service/target
