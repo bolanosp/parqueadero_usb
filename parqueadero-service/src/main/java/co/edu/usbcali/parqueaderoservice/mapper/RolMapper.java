@@ -1,8 +1,6 @@
 package co.edu.usbcali.parqueaderoservice.mapper;
 
-import co.edu.usbcali.parqueaderoservice.dto.FacturaDTO;
 import co.edu.usbcali.parqueaderoservice.dto.RolDTO;
-import co.edu.usbcali.parqueaderoservice.models.Factura;
 import co.edu.usbcali.parqueaderoservice.models.Rol;
 
 import java.util.List;

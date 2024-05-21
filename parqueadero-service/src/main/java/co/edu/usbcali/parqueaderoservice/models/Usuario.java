@@ -1,6 +1,7 @@
 package co.edu.usbcali.parqueaderoservice.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Usuario {
     private String documentoIdentificacion;
 
     @Column(nullable = false)
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
     @Column(nullable = false)

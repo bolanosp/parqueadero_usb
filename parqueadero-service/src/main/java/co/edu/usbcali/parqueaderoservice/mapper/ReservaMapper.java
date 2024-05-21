@@ -1,8 +1,6 @@
 package co.edu.usbcali.parqueaderoservice.mapper;
 
-import co.edu.usbcali.parqueaderoservice.dto.ParqueaderoDTO;
 import co.edu.usbcali.parqueaderoservice.dto.ReservaDTO;
-import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
 import co.edu.usbcali.parqueaderoservice.models.Reserva;
 
 import java.util.List;
