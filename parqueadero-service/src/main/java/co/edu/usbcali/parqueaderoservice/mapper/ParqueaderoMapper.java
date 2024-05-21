@@ -26,10 +26,6 @@ public class ParqueaderoMapper {
 
     public static Parqueadero dtoToDomain(ParqueaderoDTO parqueaderoDTO) throws Exception{
 
-        if (parqueaderoDTO.getVehiculo() == null) {
-            throw new Exception("Debe proporcionar un vehículo para crear el parqueadero");
-        }
-
         // Crear una instancia de Parqueadero
         Parqueadero parqueadero = Parqueadero.builder()
                 .id(parqueaderoDTO.getId())
@@ -37,10 +33,17 @@ public class ParqueaderoMapper {
                 .disponibilidad(parqueaderoDTO.getDisponibilidad())
                 .build();
 
-        // Crear una instancia de vehículo y asignarlo al parqueadero
-        Vehiculo vehiculo = new Vehiculo();
-        vehiculo.setId(parqueaderoDTO.getVehiculo());
-        parqueadero.setVehiculo(vehiculo);
+        // Solo asignar vehículo si la disponibilidad es false
+        if (parqueaderoDTO.getDisponibilidad() == Boolean.FALSE) {
+            if (parqueaderoDTO.getVehiculo() == null) {
+                throw new Exception("Debe proporcionar un vehículo cuando no hay disponibilidad");
+            }
+
+            // Crear una instancia de vehículo y asignarlo al parqueadero
+            Vehiculo vehiculo = new Vehiculo();
+            vehiculo.setId(parqueaderoDTO.getVehiculo());
+            parqueadero.setVehiculo(vehiculo);
+        }
 
         return parqueadero;
     }

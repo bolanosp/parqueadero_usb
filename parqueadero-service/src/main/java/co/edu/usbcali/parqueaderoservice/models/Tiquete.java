@@ -36,4 +36,8 @@ public class Tiquete {
     @ManyToOne
     @JoinColumn(name = "id_vehiculo", referencedColumnName = "id", nullable = false)
     private Vehiculo vehiculo;
+
+    @ManyToOne
+    @JoinColumn(name = "id_parqueadero", referencedColumnName = "id", nullable = false)
+    private Parqueadero parqueadero;
 }

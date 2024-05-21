@@ -47,4 +47,6 @@ public class VehiculoServiceImpl implements VehiculoService {
         return vehiculoRepository.getReferenceById(id);
     }
 
+
+
 }

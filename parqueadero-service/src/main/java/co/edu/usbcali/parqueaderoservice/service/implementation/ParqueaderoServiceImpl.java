@@ -5,6 +5,7 @@ import co.edu.usbcali.parqueaderoservice.mapper.ParqueaderoMapper;
 import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
 import co.edu.usbcali.parqueaderoservice.models.Vehiculo;
 import co.edu.usbcali.parqueaderoservice.repository.ParqueaderoRepository;
+import co.edu.usbcali.parqueaderoservice.repository.VehiculoRepository;
 import co.edu.usbcali.parqueaderoservice.service.ParqueaderoService;
 import co.edu.usbcali.parqueaderoservice.service.VehiculoService;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,12 @@ public class ParqueaderoServiceImpl implements ParqueaderoService {
 
     private final ParqueaderoRepository parqueaderoRepository;
     private final VehiculoService vehiculoService;
+    private final VehiculoRepository vehiculoRepository;
 
 
-    public ParqueaderoServiceImpl(ParqueaderoRepository parqueaderoRepository, VehiculoService vehiculoService) {
+    public ParqueaderoServiceImpl(ParqueaderoRepository parqueaderoRepository, VehiculoRepository vehiculoRepository,VehiculoService vehiculoService) {
         this.parqueaderoRepository = parqueaderoRepository;
+        this.vehiculoRepository = vehiculoRepository;
         this.vehiculoService = vehiculoService;
     }
 
@@ -40,13 +43,15 @@ public class ParqueaderoServiceImpl implements ParqueaderoService {
             throw new Exception("Debe ingresar la disponibilidad");
         }
 
-        // Validar vehículo
-        if (parqueaderoDTO.getVehiculo() == null) {
-            throw new Exception("Debe relacionarse con un vehículo válido");
-        }
-        Vehiculo vehiculo = vehiculoService.buscarVehiculoPorId(parqueaderoDTO.getVehiculo());
-        if (vehiculo == null) {
-            throw new Exception("Vehículo no encontrado en la base de datos");
+        // Validar vehículo solo si la disponibilidad es false
+        if (parqueaderoDTO.getDisponibilidad() == Boolean.FALSE) {
+            if (parqueaderoDTO.getVehiculo() == null) {
+                throw new Exception("Debe relacionarse con un vehículo válido cuando la disponibilidad es falsa");
+            }
+            Vehiculo vehiculo = vehiculoService.buscarVehiculoPorId(parqueaderoDTO.getVehiculo());
+            if (vehiculo == null) {
+                throw new Exception("Vehículo no encontrado en la base de datos");
+            }
         }
 
 
@@ -61,6 +66,21 @@ public class ParqueaderoServiceImpl implements ParqueaderoService {
 
         //Retornamos el ParqueaderoDTO
         return parqueaderoDTO;
+    }
 
+    @Override
+    public boolean existeVehiculo(Integer idVehiculo) {
+        if (idVehiculo == null) {
+            return false;
+        }
+        return vehiculoRepository.existsById(idVehiculo);
+    }
+
+    @Override
+    public ParqueaderoDTO buscarPorId(Integer id) throws Exception {
+        // Implementación para buscar un parqueadero por su ID
+        Parqueadero parqueadero = parqueaderoRepository.findById(id)
+                .orElseThrow(() -> new Exception("Parqueadero no encontrado"));
+        return ParqueaderoMapper.domainToDto(parqueadero);
     }
 }

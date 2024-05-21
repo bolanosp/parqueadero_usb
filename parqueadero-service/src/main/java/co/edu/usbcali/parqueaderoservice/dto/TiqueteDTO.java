@@ -18,4 +18,5 @@ public class TiqueteDTO {
     private Double descuento;
     private Double valor;
     private Integer vehiculo;
+    private Integer parqueadero;
 }

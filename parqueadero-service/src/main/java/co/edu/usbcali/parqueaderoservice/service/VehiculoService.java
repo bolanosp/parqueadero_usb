@@ -7,6 +7,5 @@ import co.edu.usbcali.parqueaderoservice.models.Vehiculo;
 public interface VehiculoService {
 
     VehiculoDTO crearNuevoVehiculo (VehiculoDTO vehiculoDTO) throws Exception;
-
     Vehiculo buscarVehiculoPorId(Integer id) throws Exception;
 }

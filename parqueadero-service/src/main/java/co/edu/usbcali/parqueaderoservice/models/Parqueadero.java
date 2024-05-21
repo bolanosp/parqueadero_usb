@@ -26,6 +26,17 @@ public class Parqueadero {
     private Boolean disponibilidad;
 
     @OneToOne
-    @JoinColumn(name = "id_vehiculo", referencedColumnName = "id")
+    @JoinColumn(nullable = true, name = "id_vehiculo", referencedColumnName = "id")
     private Vehiculo vehiculo;
+
+    @PrePersist
+    @PreUpdate
+    private void validate() {
+        if (disponibilidad == Boolean.FALSE && vehiculo == null) {
+            throw new IllegalArgumentException("Parqueadero no disponible debe tener un vehículo asignado");
+        }
+        if (disponibilidad == Boolean.TRUE && vehiculo != null) {
+            throw new IllegalArgumentException("Parqueadero disponible no debe tener un vehículo asignado");
+        }
+    }
 }
