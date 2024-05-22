@@ -83,5 +83,5 @@ VALUES (1, 1, 'ABC123'),
 
 INSERT INTO "parqueadero" ("id_vehiculo", "ubicacion", "disponibilidad")
 VALUES (null, 'Piso 1, Espacio 01', true),
-(null, 'Piso 1, Espacio 02', true)
+(null, 'Piso 1, Espacio 02', true),
 (null, 'Piso 1, Espacio 03', true);

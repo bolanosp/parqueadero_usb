@@ -1,9 +1,6 @@
 package co.edu.usbcali.parqueaderoservice.controller;
 
 import co.edu.usbcali.parqueaderoservice.dto.ParqueaderoDTO;
-import co.edu.usbcali.parqueaderoservice.mapper.ParqueaderoMapper;
-import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
-import co.edu.usbcali.parqueaderoservice.repository.ParqueaderoRepository;
 import co.edu.usbcali.parqueaderoservice.service.ParqueaderoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,59 +9,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/parqueadero")
+@RequestMapping("/api/parqueaderos")
 @CrossOrigin("*")
 public class ParqueaderoController {
 
-    //Declarar el Repository para hacer uso
-    private final ParqueaderoRepository parqueaderoRepository;
-
-    //Declarar el Service para hacer uso
     private final ParqueaderoService parqueaderoService;
 
-    //Inyección de dependencias por Constructor
-    public ParqueaderoController(ParqueaderoRepository parqueaderoRepository, ParqueaderoService parqueaderoService) {
-        this.parqueaderoRepository = parqueaderoRepository;
+    public ParqueaderoController(ParqueaderoService parqueaderoService) {
         this.parqueaderoService = parqueaderoService;
     }
 
-    @GetMapping(value = "/validarController")
-    public String validarController(){
-        return "Controlador funcionando correctamente";
+    @GetMapping
+    public ResponseEntity<List<ParqueaderoDTO>> obtenerParqueaderos() throws Exception {
+        return ResponseEntity.status(HttpStatus.OK).body(parqueaderoService.obtenerParqueaderos());
     }
 
-    @GetMapping(value = "/obtenerParqueaderos")
-    public List<ParqueaderoDTO> obtenerParqueaderos(){
-
-        // 1. Consulto TODOS los parqueaderos en DB
-        List<Parqueadero> parqueaderos = parqueaderoRepository.findAll();
-
-        //2. Instancio una nueva lista a Dto para retornar el método
-        List<ParqueaderoDTO> parqueaderosDto;
-
-        //3. Mapeo los parqueaderos que consultó hacia dto
-        parqueaderosDto = ParqueaderoMapper.domainToDtoList(parqueaderos);
-
-        //4. Retorno los dtos transformados
-        return  parqueaderosDto;
+    @PutMapping("/ingreso/{idParqueadero}/{idVehiculo}")
+    public ResponseEntity<ParqueaderoDTO> ingresarVehiculo(@PathVariable Integer idParqueadero, @PathVariable Integer idVehiculo) throws Exception {
+        return ResponseEntity.status(HttpStatus.OK).body(parqueaderoService.ingresarVehiculo(idParqueadero, idVehiculo));
     }
 
-    @GetMapping(value = "/buscarPorId/{id}")
-    public ResponseEntity<ParqueaderoDTO> buscarPorId(@PathVariable Integer id){
-        Parqueadero parqueadero = parqueaderoRepository.getReferenceById(id);
-        ParqueaderoDTO parqueaderoDTO = ParqueaderoMapper.domainToDto(parqueadero);
-        return new ResponseEntity<>(parqueaderoDTO, HttpStatus.OK);
+    @PutMapping("/salida/{idParqueadero}")
+    public ResponseEntity<ParqueaderoDTO> retirarVehiculo(@PathVariable Integer idParqueadero) throws Exception {
+        return ResponseEntity.status(HttpStatus.OK).body(parqueaderoService.retirarVehiculo(idParqueadero));
     }
-
-    @PostMapping(value = "crearNuevoParqueadero")
-    public ResponseEntity<ParqueaderoDTO> crearNuevoParqueadero(@RequestBody ParqueaderoDTO parqueaderoDTO){
-        ParqueaderoDTO parqueaderoDTOresponse = null;
-        try {
-            parqueaderoDTOresponse = parqueaderoService.crearNuevoParqueadero(parqueaderoDTO);
-        } catch (Exception e){
-            throw new RuntimeException(e);
-        }
-        return  new ResponseEntity<>(parqueaderoDTOresponse,HttpStatus.OK);
-    }
-
 }

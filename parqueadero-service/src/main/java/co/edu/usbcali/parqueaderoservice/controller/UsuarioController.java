@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @CrossOrigin("*")
 public class UsuarioController {
 
-    // Declarar el Repository y Service para hacer uso
     private final UsuarioService usuarioService;
 
-    // Inyección de dependencias por Constructor
     public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }

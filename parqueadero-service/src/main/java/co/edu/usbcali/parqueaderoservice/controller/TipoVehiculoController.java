@@ -1,7 +1,6 @@
 package co.edu.usbcali.parqueaderoservice.controller;
 
 import co.edu.usbcali.parqueaderoservice.dto.TipoVehiculoDTO;
-import co.edu.usbcali.parqueaderoservice.dto.TiqueteDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.TipoVehiculoMapper;
 import co.edu.usbcali.parqueaderoservice.models.TipoVehiculo;
 import co.edu.usbcali.parqueaderoservice.repository.TipoVehiculoRepository;
