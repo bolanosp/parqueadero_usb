@@ -1,16 +1,12 @@
 package co.edu.usbcali.parqueaderoservice.service.implementation;
 
 import co.edu.usbcali.parqueaderoservice.dto.ParqueaderoDTO;
-import co.edu.usbcali.parqueaderoservice.dto.VehiculoDTO;
 import co.edu.usbcali.parqueaderoservice.mapper.ParqueaderoMapper;
-import co.edu.usbcali.parqueaderoservice.mapper.VehiculoMapper;
 import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
 import co.edu.usbcali.parqueaderoservice.models.Vehiculo;
 import co.edu.usbcali.parqueaderoservice.repository.ParqueaderoRepository;
 import co.edu.usbcali.parqueaderoservice.repository.VehiculoRepository;
 import co.edu.usbcali.parqueaderoservice.service.ParqueaderoService;
-import co.edu.usbcali.parqueaderoservice.service.VehiculoService;
-
 import java.util.List;
 
 import org.springframework.stereotype.Service;

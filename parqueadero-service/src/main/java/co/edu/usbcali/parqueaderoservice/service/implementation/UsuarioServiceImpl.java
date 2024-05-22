@@ -25,11 +25,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         if(usuarioDTO == null){
             throw new Exception("Usuario es nulo");
         }
-
         Usuario usuario = UsuarioMapper.dtoToDomain(usuarioDTO);
-
         usuario = usuarioRepository.save(usuario);
-
         return UsuarioMapper.domainToDto(usuario);
     }
 
