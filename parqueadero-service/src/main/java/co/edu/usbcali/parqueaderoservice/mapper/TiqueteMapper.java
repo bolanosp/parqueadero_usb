@@ -1,7 +1,9 @@
 package co.edu.usbcali.parqueaderoservice.mapper;
 
 import co.edu.usbcali.parqueaderoservice.dto.TiqueteDTO;
+import co.edu.usbcali.parqueaderoservice.models.Parqueadero;
 import co.edu.usbcali.parqueaderoservice.models.Tiquete;
+import co.edu.usbcali.parqueaderoservice.models.Vehiculo;
 
 import java.util.List;
 
@@ -14,12 +16,19 @@ public class TiqueteMapper {
                 .horaSalida(tiquete.getHoraSalida())
                 .descuento(tiquete.getDescuento())
                 .valor(tiquete.getValor())
-                .vehiculo((tiquete != null) ? tiquete.getVehiculo().getId()
-                        : null)
+                .vehiculo(tiquete.getVehiculo() != null ? tiquete.getVehiculo().getId(): null)
+                .parqueadero(tiquete.getParqueadero() != null ? tiquete.getParqueadero().getId(): null)
                 .build();
     }
 
     public static Tiquete dtoToDomain(TiqueteDTO tiqueteDTO){
+
+        Vehiculo vehiculo = new Vehiculo();
+        vehiculo.setId(tiqueteDTO.getVehiculo());
+
+        Parqueadero parqueadero = new Parqueadero();
+        parqueadero.setId(tiqueteDTO.getParqueadero());
+
         return Tiquete
                 .builder()
                 .id(tiqueteDTO.getId())
@@ -27,6 +36,8 @@ public class TiqueteMapper {
                 .horaSalida(tiqueteDTO.getHoraSalida())
                 .descuento(tiqueteDTO.getDescuento())
                 .valor(tiqueteDTO.getValor())
+                .vehiculo(vehiculo)
+                .parqueadero(parqueadero)
                 .build();
     }
 
@@ -34,7 +45,4 @@ public class TiqueteMapper {
         return tiquetes.stream().map(TiqueteMapper::domainToDto).toList();
     }
 
-    public static List<Tiquete> dtoToDomainList (List<TiqueteDTO> tiqueteDTOS){
-        return tiqueteDTOS.stream().map(TiqueteMapper::dtoToDomain).toList();
-    }
 }

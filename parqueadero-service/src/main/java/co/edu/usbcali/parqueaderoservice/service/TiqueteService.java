@@ -4,6 +4,7 @@ import co.edu.usbcali.parqueaderoservice.dto.TiqueteDTO;
 
 public interface TiqueteService {
 
-    TiqueteDTO crearNuevoTiquete (TiqueteDTO tiqueteDTO) throws Exception;
-    //TiqueteDTO darSalidaAVehiculo(Integer idTiquete, String horaSalida) throws Exception;
+    TiqueteDTO ingresarVehiculo (Integer idParqueadero, Integer idVehiculo) throws Exception;
+
+    TiqueteDTO retirarVehiculo (Integer idTiquete) throws Exception;
 }

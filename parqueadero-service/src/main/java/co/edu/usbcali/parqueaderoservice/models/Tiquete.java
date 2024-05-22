@@ -21,10 +21,10 @@ public class Tiquete {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(name = "hora_entrada", nullable = false)
     private Date horaEntrada;
 
-    @Column
+    @Column(name = "hora_salida")
     private Date horaSalida;
 
     @Column

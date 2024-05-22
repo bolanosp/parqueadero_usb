@@ -15,11 +15,8 @@ import org.springframework.stereotype.Service;
 public class ParqueaderoServiceImpl implements ParqueaderoService {
 
     private final ParqueaderoRepository parqueaderoRepository;
-    private final VehiculoRepository vehiculoRepository;
-
     public ParqueaderoServiceImpl(ParqueaderoRepository parqueaderoRepository, VehiculoRepository vehiculoRepository) {
         this.parqueaderoRepository = parqueaderoRepository;
-        this.vehiculoRepository = vehiculoRepository;
     }
 
     @Override
@@ -29,21 +26,16 @@ public class ParqueaderoServiceImpl implements ParqueaderoService {
     }
 
     @Override
-    public ParqueaderoDTO ingresarVehiculo (Integer idParqueadero, Integer idVehiculo) throws  Exception{
-        Parqueadero parqueadero = parqueaderoRepository.getReferenceById(idParqueadero);
-        Vehiculo vehiculo = vehiculoRepository.getReferenceById(idVehiculo);
+    public void ingresarVehiculo (Parqueadero parqueadero, Vehiculo vehiculo) throws  Exception{
         parqueadero.setVehiculo(vehiculo);
         parqueadero.setDisponibilidad(false);
         parqueaderoRepository.save(parqueadero);
-        return ParqueaderoMapper.domainToDto(parqueadero);
     }
 
     @Override
-    public ParqueaderoDTO retirarVehiculo (Integer idParqueadero) throws  Exception{
-        Parqueadero parqueadero = parqueaderoRepository.getReferenceById(idParqueadero);
+    public void retirarVehiculo (Parqueadero parqueadero) throws  Exception{
         parqueadero.setVehiculo(null);
         parqueadero.setDisponibilidad(true);
         parqueaderoRepository.save(parqueadero);
-        return ParqueaderoMapper.domainToDto(parqueadero);
     }
 }
